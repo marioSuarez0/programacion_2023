@@ -1,0 +1,100 @@
+package javaucjc.metodos.utilidades;
+
+import java.util.Scanner;
+
+public class MenuFunciones {
+
+	public static void main(String[] args) {
+
+		String menu;
+		
+		do {
+
+			Utilidades.pintarMenu("Opcion1;Opcion2;Opcion3;Opcion4", ";");
+			menu = Utilidades.pideDatos("Elige una opción");
+			
+			if (menu.equalsIgnoreCase("1")) {
+				validarEmail();
+
+			} else if (menu.equalsIgnoreCase("2")) {
+				pintaCuadrado();
+
+			} else if (menu.equalsIgnoreCase("3")) {
+				System.out.println("\nOpción 3 seleccionada");
+
+			} else if (menu.equalsIgnoreCase("4")) {
+				System.out.println("\nSe ha salido del menú");
+
+			} else {
+				System.out.println("\nOpción seleccionada no válida");
+			}
+
+		} while (!menu.equalsIgnoreCase("4"));
+
+	}
+
+	// Creamos una función
+	public static void validarEmail() {
+
+		String email = Utilidades.pideDatos("Introduce un email:");
+
+		email = email.trim();
+		String mensajeError = "";
+
+		// Validamos el email
+		// El email debe contener solo una @
+		if (email.indexOf("@") == -1) {
+			mensajeError += "El email no tiene arroba. ";
+		} else if (email.indexOf("@") != email.lastIndexOf("@")) {
+			mensajeError += "El email no puede tener mÃ¡s de una arroba. ";
+		} else {
+			// DespuÃ©s de la @ tiene que haber al menos un punto
+			String dominio = email.substring(email.indexOf("@") + 1);
+			if (dominio.indexOf(".") == -1) {
+				mensajeError += "DespuÃ©s de la @ debe haber al menos un punto. ";
+			} else {
+
+				int diferencia = dominio.length() - (dominio.lastIndexOf(".") + 1);
+				if (diferencia < 2 || diferencia > 6) {
+					mensajeError += "DespuÃ©s del Ãºltimo punto solo puede haber " + "entre 2 y 6 caracteres. ";
+				}
+			}
+		}
+
+		// El email no puede tener espacios en blanco
+		if (email.contains(" ")) {
+			mensajeError += "El email no puede tener espacios en blanco. ";
+		}
+
+		// Compruebo si ha habido errores
+		if (mensajeError.equals("")) {
+			System.out.println("El email " + email + " es correcto");
+		} else {
+			System.out.println("El email " + email + " no es correcto " + mensajeError);
+		}
+
+	}
+
+	// Para crear una fucnión
+	public static void pintaCuadrado() {
+		int tamaño = 4;
+
+		for (int i = 0; i < 4; i++) { // Filas
+			for (int j = 0; j < 4; j++) { // Columnas
+				if (i == 0 || i == 3) {
+					System.out.print("X\t");
+				} else {
+					if (j == 0 || j == tamaño - 1) {
+						System.out.print("X\t");
+					} else {
+						System.out.print("\t");
+					}
+				}
+
+			}
+			System.out.print("\n");
+		}
+
+	}
+
+}
