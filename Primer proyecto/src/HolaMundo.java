@@ -10,7 +10,7 @@ public class HolaMundo {
 		 * a
 		 * b
 		 */
-		
+		alkjdjbñajks
 		// Declaracion de variables
 		int num = 7;				// Entero
 		double nuDecimal = 7.0;		// Decimal
